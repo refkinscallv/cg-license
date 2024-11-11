@@ -1,0 +1,20 @@
+{
+    "name": "refkinscallv/cglicense",
+    "description": "License for Callv Group Product",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CGLicense\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Refkinscallv",
+            "email": "refkinscallv@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
