@@ -2,7 +2,7 @@
     "name": "refkinscallv/cglicense",
     "description": "License for Callv Group Product",
     "type": "library",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "license": "MIT",
     "autoload": {
         "psr-4": {
