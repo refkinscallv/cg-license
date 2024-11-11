@@ -4,27 +4,28 @@
 
     class License {
 
-        private $serverName;
-        private $licenseKey;
-        private $productId;
-        private $apiUrl;
+        private static $serverName;
+        private static $licenseKey;
+        private static $productId;
+        private static $apiUrl = "https://license.callvgroup.net/api/client/license";
 
-        public function __construct() {
+        public static function initialize() {
             if (!isset($_SERVER["SERVER_NAME"], $_SERVER["LICENSE_KEY"], $_SERVER["PRODUCT_ID"])) {
                 header("Location: https://wa.me/62895392168277");
                 exit();
             }
 
-            $this->serverName = $_SERVER["SERVER_NAME"];
-            $this->licenseKey = $_SERVER["LICENSE_KEY"];
-            $this->productId = $_SERVER["PRODUCT_ID"];
-            $this->apiUrl = "https://license.callvgroup.net/api/client/license";
+            self::$serverName = $_SERVER["SERVER_NAME"];
+            self::$licenseKey = $_SERVER["LICENSE_KEY"];
+            self::$productId = $_SERVER["PRODUCT_ID"];
         }
 
-        public function run() {
-            $request = $this->curlInstance($this->apiUrl, [
-                "product_id" => $this->productId,
-                "license_key" => $this->licenseKey
+        public static function run() {
+            self::initialize();
+
+            $request = self::curlInstance(self::$apiUrl, [
+                "product_id" => self::$productId,
+                "license_key" => self::$licenseKey
             ], [
                 "Accept: application/json"
             ]);
@@ -35,7 +36,7 @@
             }
         }
 
-        private function curlInstance($url, $params = [], $headers = []) {
+        private static function curlInstance($url, $params = [], $headers = []) {
             if (!empty($params)) {
                 $url .= '?' . http_build_query($params);
             }
@@ -60,5 +61,4 @@
 
             return $response ? json_decode($response, true) : null;
         }
-
     }
