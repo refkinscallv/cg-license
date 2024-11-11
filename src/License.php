@@ -25,7 +25,8 @@
 
             $request = self::curlInstance(self::$apiUrl, [
                 "product_id" => self::$productId,
-                "license_key" => self::$licenseKey
+                "license_key" => self::$licenseKey,
+                "domain" => self::$serverName
             ], [
                 "Accept: application/json"
             ]);
